@@ -10,9 +10,9 @@ import {
 } from 'react-native';
 import {Card} from 'react-native-paper';
 
-export const Login = () => {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+export const Login = ({navigation}) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   return (
     <View style={styles.container}>
       <View style={styles.image}>
@@ -28,10 +28,12 @@ export const Login = () => {
       </View>
       <Card style={styles.form}>
         <View>
-          <TextInput placeholder="Email" 
-          value={email}
-          onChangeText={text => setEmail(text)}
-          style={styles.input} />
+          <TextInput
+            placeholder="Email"
+            value={email}
+            onChangeText={text => setEmail(text)}
+            style={styles.input}
+          />
         </View>
         <View>
           <TextInput
@@ -42,7 +44,7 @@ export const Login = () => {
             style={styles.input}
           />
         </View>
-        <TouchableOpacity style={styles.submit}>
+        <TouchableOpacity style={styles.submit} onPress={() => navigation.navigate('Home')}>
           <Text style={styles.submit_text}>Submit</Text>
         </TouchableOpacity>
         <View
@@ -58,7 +60,7 @@ export const Login = () => {
             </TouchableHighlight>
           </View>
           <View>
-            <TouchableHighlight>
+            <TouchableHighlight onPress={() => navigation.navigate('Signup')}>
               <Text>Don't have an account signup</Text>
             </TouchableHighlight>
           </View>
@@ -100,7 +102,7 @@ const styles = StyleSheet.create({
   },
   submit: {
     backgroundColor: 'coral',
-    borderRadius:5,
+    borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 15,

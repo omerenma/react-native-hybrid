@@ -28,6 +28,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import {Login} from './src/Screens/Auth/Login';
 import {Signup} from './src/Screens/Auth/Signup';
+import {Dashboard} from './src/Screens/Home/Dashboard';
 
 const Stack = createNativeStackNavigator();
 
@@ -42,9 +43,10 @@ const App = () => {
     <SafeAreaView style={styles.sectionContainer}>
       <StatusBar barStyle={!isDarkMode ? 'light-content' : 'dark-content'} />
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Signup">
+        <Stack.Navigator initialRouteName="Login">
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Signup" component={Signup} />
+          <Stack.Screen name="Home" component={Dashboard} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>

@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import {Card} from 'react-native-paper';
 
-export const Signup = () => {
+export const Signup = ({navigation}) => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
@@ -78,8 +78,8 @@ export const Signup = () => {
             </TouchableHighlight>
           </View>
           <View>
-            <TouchableHighlight>
-              <Text>Don't have an account signup</Text>
+            <TouchableHighlight onPress={() => navigation.navigate('Login')}>
+              <Text>Already have an account, login</Text>
             </TouchableHighlight>
           </View>
         </View>
