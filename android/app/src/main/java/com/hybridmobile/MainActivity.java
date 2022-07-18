@@ -1,9 +1,14 @@
 package com.hybridmobile;
 import android.os.Bundle;
-
+import android.content.Intent;
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
+import com.facebook.react.HeadlessJsTaskService;
+import com.facebook.react.jstasks.HeadlessJsTaskConfig;
+import com.facebook.react.bridge.Arguments;
+import javax.annotation.Nullable;
+
 
 public class MainActivity extends ReactActivity {
 
@@ -43,3 +48,20 @@ protected void onCreate(Bundle savedInstanceState) {
   super.onCreate(null);
 }
 }
+
+// public class MyTaskService extends HeadlessJsTaskService {
+
+//   @Override
+//   protected @Nullable HeadlessJsTaskConfig getTaskConfig(Intent intent) {
+//     Bundle extras = intent.getExtras();
+//     if (extras != null) {
+//       return new HeadlessJsTaskConfig(
+//           "SomeTaskName",
+//           Arguments.fromBundle(extras),
+//           5000, // timeout for the task
+//           false // optional: defines whether or not  the task is allowed in foreground. Default is false
+//         );
+//     }
+//     return null;
+//   }
+// }

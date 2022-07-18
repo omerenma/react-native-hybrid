@@ -2,6 +2,7 @@
   package="com.hybridmobile">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- <service android:name="com.example.MyTaskService" /> -->
 
     <application
       android:name=".MainApplication"

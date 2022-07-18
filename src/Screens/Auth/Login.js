@@ -19,10 +19,10 @@ export const Login = ({navigation}) => {
         <Image
           source={require('../../images/people.png')}
           style={{width: 400, height: 150, position: 'relative', top: 10}}
-          resizeMode="stretch"
+          resizeMode="center"
         />
       </View>
-      <View style={{justifyContent: 'center', alignItems: 'center'}}>
+      <View style={styles.heading}>
         <Text style={{fontSize: 30}}>Welcome Back</Text>
         <Text>Please enter your email and password to login</Text>
       </View>
@@ -73,13 +73,19 @@ export const Login = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 5,
+    //padding: 5,
     // alignItems: 'center',
     // justifyContent: 'center',
     //backgroundColor:'green'
   },
   text: {
     color: 'black',
+  },
+  heading: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+    bottom: 30,
   },
   image: {
     // backgroundColor:'red',
@@ -88,17 +94,18 @@ const styles = StyleSheet.create({
   form: {
     // backgroundColor: 'blue',
     flex: 2,
-    borderRadius: 10,
-    padding: 5,
+    // borderRadius: 10,
+    // padding: 5,
     justifyContent: 'flex-end',
 
     // margin:'5px 0'
   },
   input: {
-    borderWidth: 1.5,
+    borderWidth: 0.4,
     borderColor: '#efefef',
     marginTop: 20,
-    // borderRadius:5
+    width: 350,
+    alignSelf: 'center',
   },
   submit: {
     backgroundColor: 'coral',
@@ -107,6 +114,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 15,
     marginTop: 20,
+    width:350,
+    alignSelf:'center'
   },
   submit_text: {
     color: 'white',
