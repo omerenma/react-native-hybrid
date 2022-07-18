@@ -16,6 +16,8 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import {
   Colors,
@@ -24,7 +26,10 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import {Login} from './src/Screens/Auth/Login'
+import {Login} from './src/Screens/Auth/Login';
+import {Signup} from './src/Screens/Auth/Signup';
+
+const Stack = createNativeStackNavigator();
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -34,9 +39,14 @@ const App = () => {
   };
 
   return (
-    <SafeAreaView style={styles.sectionContainer} >
+    <SafeAreaView style={styles.sectionContainer}>
       <StatusBar barStyle={!isDarkMode ? 'light-content' : 'dark-content'} />
-      <Login />
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Signup">
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Signup" component={Signup} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </SafeAreaView>
   );
 };
@@ -46,7 +56,7 @@ const styles = StyleSheet.create({
     // marginTop: 32,
     // paddingHorizontal: 24,
     // backgroundColor:'blue',
-    flex:1
+    flex: 1,
   },
   sectionTitle: {
     fontSize: 24,
