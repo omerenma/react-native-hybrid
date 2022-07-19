@@ -9,7 +9,7 @@ const Drawer = createDrawerNavigator();
 export const Dashboard = () => {
   return (
     <Drawer.Navigator>
-      <Drawer.Screen name="FirstComponent" component={FirstComponent} />
+        <Drawer.Screen name="FirstComponent" component={FirstComponent} />
       <Drawer.Screen name="SecondComponent" component={SecondComponent} />
     </Drawer.Navigator>
   );

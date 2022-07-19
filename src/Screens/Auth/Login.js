@@ -24,15 +24,15 @@ export const Login = ({navigation}) => {
       </View>
       <View style={styles.heading}>
         <Text style={{fontSize: 30}}>Welcome Back</Text>
-        <Text>Please enter your email and password to login</Text>
+        <Text style={{fontWeight:'bold'}} >Please enter your email and password to login</Text>
       </View>
       <Card style={styles.form}>
-        <View>
+        <View style={{position:'relative', top:30}}>
           <TextInput
             placeholder="Email"
             value={email}
             onChangeText={text => setEmail(text)}
-            style={styles.input}
+            style={[styles.input]}
           />
         </View>
         <View>
@@ -44,7 +44,9 @@ export const Login = ({navigation}) => {
             style={styles.input}
           />
         </View>
-        <TouchableOpacity style={styles.submit} onPress={() => navigation.navigate('Home')}>
+        <TouchableOpacity
+          style={styles.submit}
+          onPress={() => navigation.navigate('Home')}>
           <Text style={styles.submit_text}>Submit</Text>
         </TouchableOpacity>
         <View
@@ -85,7 +87,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     position: 'relative',
-    bottom: 30,
+    top: 70,
+    color: 'black',
+    zIndex: 1,
   },
   image: {
     // backgroundColor:'red',
@@ -93,7 +97,7 @@ const styles = StyleSheet.create({
   },
   form: {
     // backgroundColor: 'blue',
-    flex: 2,
+    flex: 2.5,
     // borderRadius: 10,
     // padding: 5,
     justifyContent: 'flex-end',
@@ -101,11 +105,18 @@ const styles = StyleSheet.create({
     // margin:'5px 0'
   },
   input: {
-    borderWidth: 0.4,
+    borderBottomWidth: 1,
+    borderRightWidth: 1,
+    borderLeftWidth: 1,
+    borderTopWidth: 1,
+    borderRadius: 5,
     borderColor: '#efefef',
-    marginTop: 20,
+    marginTop: 60,
     width: 350,
     alignSelf: 'center',
+  },
+  input_wraper: {
+    // marginTop: 50,
   },
   submit: {
     backgroundColor: 'coral',
@@ -114,8 +125,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 15,
     marginTop: 20,
-    width:350,
-    alignSelf:'center'
+    width: 350,
+    alignSelf: 'center',
   },
   submit_text: {
     color: 'white',

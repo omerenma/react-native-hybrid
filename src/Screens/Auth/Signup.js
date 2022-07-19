@@ -24,10 +24,11 @@ export const Signup = ({navigation}) => {
           resizeMode="center"
         />
       </View>
-      <View style={StyleSheet.heading}>
+      {/* <View style={styles.heading}>
         <Text>Please start your onboarding process</Text>
-      </View>
+      </View> */}
       <Card style={styles.form}>
+        <Text style={styles.heading}>Please start your onboarding process</Text>
         <View>
           <TextInput
             placeholder="Fullname"
@@ -100,10 +101,12 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   heading: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'relative',
-    bottom: 30,
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    // position: 'relative',
+    // bottom: 30,
+    alignSelf: 'center',
+    fontWeight: 'bold',
   },
   image: {
     // backgroundColor:'red',
@@ -111,7 +114,7 @@ const styles = StyleSheet.create({
   },
   form: {
     // backgroundColor: 'blue',
-    flex: 2,
+    flex: 2.5,
     // borderRadius: 10,
     padding: 5,
     justifyContent: 'flex-end',
@@ -119,8 +122,13 @@ const styles = StyleSheet.create({
     // margin:'5px 0'
   },
   input: {
-    borderWidth: 0.4,
+    // borderWidth: 0.7,
     borderColor: '#efefef',
+    borderBottomWidth: 1,
+    borderRightWidth: 1,
+    borderLeftWidth: 1,
+    borderTopWidth: 1,
+    borderRadius: 5,
     marginTop: 20,
     width: 350,
     alignSelf: 'center',
