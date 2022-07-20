@@ -1,5 +1,7 @@
 import 'react-native-gesture-handler';
 import React from 'react';
+import {Provider} from 'react-redux';
+import store from './store/store';
 import {
   SafeAreaView,
   ScrollView,
@@ -35,13 +37,15 @@ const App = () => {
   return (
     <SafeAreaView style={styles.sectionContainer}>
       <StatusBar barStyle={!isDarkMode ? 'light-content' : 'dark-content'} />
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Login">
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Signup" component={Signup} />
-          <Stack.Screen name="Home" component={Dashboard} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <Provider store={store}>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="Login">
+            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="Signup" component={Signup} />
+            <Stack.Screen name="Home" component={Dashboard} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </Provider>
     </SafeAreaView>
   );
 };

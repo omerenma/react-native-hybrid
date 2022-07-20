@@ -75,12 +75,12 @@ export const Signup = ({navigation}) => {
           }}>
           <View>
             <TouchableHighlight>
-              <Text>Forgot password</Text>
+              <Text style={{color:'black'}}>Forgot password</Text>
             </TouchableHighlight>
           </View>
           <View>
             <TouchableHighlight onPress={() => navigation.navigate('Login')}>
-              <Text>Already have an account, login</Text>
+              <Text style={{color:'black'}}>Already have an account, login</Text>
             </TouchableHighlight>
           </View>
         </View>
@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
     // bottom: 30,
     alignSelf: 'center',
     fontWeight: 'bold',
+    color:'#000'
   },
   image: {
     // backgroundColor:'red',

@@ -23,8 +23,8 @@ export const Login = ({navigation}) => {
         />
       </View>
       <View style={styles.heading}>
-        <Text style={{fontSize: 30}}>Welcome Back</Text>
-        <Text style={{fontWeight:'bold'}} >Please enter your email and password to login</Text>
+        <Text style={{fontSize: 30, color:'black'}}>Welcome Back</Text>
+        <Text style={{fontWeight:'bold', color:'black'}} >Please enter your email and password to login</Text>
       </View>
       <Card style={styles.form}>
         <View style={{position:'relative', top:30}}>
@@ -58,12 +58,12 @@ export const Login = ({navigation}) => {
           }}>
           <View>
             <TouchableHighlight>
-              <Text>Forgot password</Text>
+              <Text style={{color:'black'}}>Forgot password</Text>
             </TouchableHighlight>
           </View>
           <View>
             <TouchableHighlight onPress={() => navigation.navigate('Signup')}>
-              <Text>Don't have an account signup</Text>
+              <Text style={{color:'black'}}>Don't have an account signup</Text>
             </TouchableHighlight>
           </View>
         </View>
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     position: 'relative',
-    top: 70,
+     top: 70,
     color: 'black',
     zIndex: 1,
   },
