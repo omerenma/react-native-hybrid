@@ -11,7 +11,7 @@ const Item = ({item}) => (
   <Card style={{width: 450, marginTop: 10, padding: 5}}>
     <Card.Cover
       source={{
-        uri: 'https://media.istockphoto.com/photos/dinner-picture-id1384440360?k=20&m=1384440360&s=612x612&w=0&h=g87F-U5MmgGwrEJAJmfclEWTaBRc7QOJUHTnQvgp6mk=',
+        uri: item.filepath,
       }}
     />
     <Title>{item.name}</Title>
@@ -25,7 +25,7 @@ const List = () => {
   const [data, setData] = useState([]);
   const [err, setErr] = useState('');
 
-  const getMovies = async () => {
+  const getRestaurants = async () => {
     try {
       const response = await fetch(
         'https://pernstackbackend.herokuapp.com/api/v1/restaurants',
@@ -39,7 +39,7 @@ const List = () => {
     }
   };
   useEffect(() => {
-    getMovies();
+    getRestaurants();
   }, []);
 
   const renderItem = ({item}) => <Item item={item} />;
