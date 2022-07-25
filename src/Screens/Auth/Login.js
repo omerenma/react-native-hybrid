@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {
   View,
   Text,
@@ -9,10 +10,16 @@ import {
   TouchableHighlight,
 } from 'react-native';
 import {Card} from 'react-native-paper';
+import {loginAction} from '../../../store/slices/signin';
 
 export const Login = ({navigation}) => {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const login = () => {
+    const data = {email, password};
+    dispatch(loginAction(data));
+  };
   return (
     <View style={styles.container}>
       <View style={styles.image}>
@@ -23,16 +30,18 @@ export const Login = ({navigation}) => {
         />
       </View>
       <View style={styles.heading}>
-        <Text style={{fontSize: 30, color:'black'}}>Welcome Back</Text>
-        <Text style={{fontWeight:'bold', color:'black'}} >Please enter your email and password to login</Text>
+        <Text style={{fontSize: 30, color: 'black'}}>Welcome Back</Text>
+        <Text style={{fontWeight: 'bold', color: 'black'}}>
+          Please enter your email and password to login
+        </Text>
       </View>
       <Card style={styles.form}>
-        <View style={{position:'relative', top:30}}>
+        <View style={{position: 'relative', top: 30}}>
           <TextInput
             placeholder="Email"
             value={email}
             onChangeText={text => setEmail(text)}
-            style={[styles.input]}
+            style={[styles.input, styles.text]}
           />
         </View>
         <View>
@@ -44,9 +53,7 @@ export const Login = ({navigation}) => {
             style={styles.input}
           />
         </View>
-        <TouchableOpacity
-          style={styles.submit}
-          onPress={() => navigation.navigate('Home')}>
+        <TouchableOpacity style={styles.submit} onPress={login}>
           <Text style={styles.submit_text}>Submit</Text>
         </TouchableOpacity>
         <View
@@ -58,12 +65,12 @@ export const Login = ({navigation}) => {
           }}>
           <View>
             <TouchableHighlight>
-              <Text style={{color:'black'}}>Forgot password</Text>
+              <Text style={{color: 'black'}}>Forgot password</Text>
             </TouchableHighlight>
           </View>
           <View>
             <TouchableHighlight onPress={() => navigation.navigate('Signup')}>
-              <Text style={{color:'black'}}>Don't have an account signup</Text>
+              <Text style={{color: 'black'}}>Don't have an account signup</Text>
             </TouchableHighlight>
           </View>
         </View>
@@ -87,7 +94,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     position: 'relative',
-     top: 70,
+    top: 70,
     color: 'black',
     zIndex: 1,
   },
@@ -114,6 +121,7 @@ const styles = StyleSheet.create({
     marginTop: 60,
     width: 350,
     alignSelf: 'center',
+    color: 'black',
   },
   input_wraper: {
     // marginTop: 50,
