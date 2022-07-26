@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import {Card} from 'react-native-paper';
 import {loginAction} from '../../../store/slices/signin';
-import {styless, newStyles} from '../../styles/styles';
+import {styless, styles} from '../../styles/styles';
 
 export const Login = ({navigation}) => {
   const dispatch = useDispatch();
@@ -25,28 +25,28 @@ export const Login = ({navigation}) => {
     dispatch(loginAction(data));
   };
   return (
-    <View style={newStyles.container}>
+    <View style={styles.container}>
       {/* style={styles.container} */}
-      <View style={newStyles.image}>
+      <View style={styles.image}>
         <Image
           source={require('../../images/people.png')}
           style={{width: 400, height: 150, position: 'relative', top: 10}}
           resizeMode="center"
         />
       </View>
-      <View style={newStyles.heading}>
+      <View style={styles.heading}>
         <Text style={{fontSize: 30, color: 'black'}}>Welcome Back</Text>
         <Text style={{fontWeight: 'bold', color: 'black'}}>
           Please enter your email and password to login
         </Text>
       </View>
-      <Card style={newStyles.form}>
+      <Card style={styles.form}>
         <View style={{position: 'relative', top: 30}}>
           <TextInput
             placeholder="Email"
             value={email}
             onChangeText={text => setEmail(text)}
-            style={[newStyles.input, newStyles.text]}
+            style={[styles.input, styles.text]}
           />
         </View>
         <View>
@@ -55,14 +55,14 @@ export const Login = ({navigation}) => {
             secureTextEntry={true}
             value={password}
             onChangeText={text => setPassword(text)}
-            style={newStyles.input}
+            style={styles.input}
           />
         </View>
-        <TouchableOpacity style={newStyles.submit} onPress={login}>
+        <TouchableOpacity style={styles.submit} onPress={login}>
           {loading ? (
             <ActivityIndicator />
           ) : (
-            <Text style={newStyles.submit_text}>Login</Text>
+            <Text style={styles.submit_text}>Login</Text>
           )}
         </TouchableOpacity>
         <View

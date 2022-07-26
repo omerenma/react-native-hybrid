@@ -7,7 +7,7 @@ export const styless = () => {
     })
 }
 
-export const newStyles = StyleSheet.create({
+export const styles = StyleSheet.create({
     container:{
         flex:1
     },
