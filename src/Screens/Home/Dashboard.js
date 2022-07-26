@@ -1,22 +1,29 @@
 import React, {useState, useEffect} from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {View, Text} from 'react-native';
-import  {useSelector} from 'react-redux'
+import {useSelector} from 'react-redux';
 import Restaurants from './Restaurants';
 import SecondComponent from './SecondComponent';
+import {Unauthorised} from '../Auth/Unauthorised';
 
 const Drawer = createDrawerNavigator();
 
 export const Dashboard = () => {
-  const [user, setUser] = useState('')
-  const {data} = useSelector(state => state.signin)
+  const [data, setData] = useState('');
+  const {user} = useSelector(state => state.signin);
   useEffect(() => {
-    setUser(data)
-  }, [])
-  console.log(user, 'user')
+    setData(user);
+  }, []);
+  if (!data.token) {
+    return (
+      <View style={{justifyContent: 'center'}}>
+        <Unauthorised />
+      </View>
+    );
+  }
   return (
     <Drawer.Navigator>
-        <Drawer.Screen name="Restaurants" component={Restaurants} />
+      <Drawer.Screen name="Restaurants" component={Restaurants} user={data} />
       <Drawer.Screen name="SecondComponent" component={SecondComponent} />
     </Drawer.Navigator>
   );

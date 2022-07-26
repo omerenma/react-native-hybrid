@@ -22,13 +22,12 @@ export const Login = ({navigation}) => {
   const login = () => {
     const data = {email, password};
     dispatch(loginAction(data)).then(res => {
-      if(res.type == "login/action/rejected"){
-        navigation.navigate('Login')
+      if (res.type == 'login/action/rejected') {
+        navigation.navigate('Login');
       }
-      if(res.type === "login/action/fulfilled"){
-        navigation.navigate('Home')
+      if (res.type === 'login/action/fulfilled') {
+        navigation.navigate('Home');
       }
-      
     });
   };
   return (

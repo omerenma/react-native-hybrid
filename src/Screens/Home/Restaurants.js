@@ -18,7 +18,7 @@ const Item = ({item}) => (
     <Paragraph>{item.location}</Paragraph>
   </Card>
 );
-const List = () => {
+const List = ({user}) => {
   const dispatch = useDispatch();
   // const {data, loading} = useSelector(state => state.getRestaurants.data);
   const [isLoading, setLoading] = useState(true);
@@ -45,6 +45,7 @@ const List = () => {
   const renderItem = ({item}) => <Item item={item} />;
   return (
     <View style={{flex: 1, padding: 24, alignSelf: 'center'}}>
+      {/* <Text>{user.name}</Text> */}
       {isLoading ? (
         <ActivityIndicator
           style={{justifyContent: 'center', alignItems: 'center'}}
@@ -85,7 +86,8 @@ const Tab4 = () => {
 };
 
 const Tab = createBottomTabNavigator();
-function FirstComponent() {
+function FirstComponent({user}) {
+  console.log(user, 'usereeeee')
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
@@ -114,7 +116,7 @@ function FirstComponent() {
           return <Ionicons name={iconName} size={size} color={color} />;
         },
       })}>
-      <Tab.Screen name="List" component={List} />
+      <Tab.Screen name="List" component={List} user={user} />
       <Tab.Screen name="Reviews" component={Reviews} />
       <Tab.Screen name="Tab3" component={Tab3} />
       <Tab.Screen name="Tab4" component={Tab4} />

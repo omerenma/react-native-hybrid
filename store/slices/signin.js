@@ -3,13 +3,17 @@ import axios from 'axios';
 
 export const loginAction = createAsyncThunk('login/action', async data => {
   try {
-    const response = await axios
-      .post('https://pernstackbackend.herokuapp.com/api/v1/auth/login', data, {
+    const response = await axios.post(
+      'https://pernstackbackend.herokuapp.com/api/v1/auth/login',
+      data,
+      {
         headers: {
           'Content-Type': 'application/json',
         },
-      })
-      return response.data
+      },
+    );
+
+    return response.data;
   } catch (error) {
     return thunkApi.rejectWithValue(error.message);
   }
