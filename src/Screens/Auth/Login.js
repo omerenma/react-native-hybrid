@@ -21,8 +21,15 @@ export const Login = ({navigation}) => {
   const [password, setPassword] = useState('');
   const login = () => {
     const data = {email, password};
-    console.log(data, 'date');
-    dispatch(loginAction(data));
+    dispatch(loginAction(data)).then(res => {
+      if(res.type == "login/action/rejected"){
+        navigation.navigate('Login')
+      }
+      if(res.type === "login/action/fulfilled"){
+        navigation.navigate('Home')
+      }
+      
+    });
   };
   return (
     <View style={styles.container}>

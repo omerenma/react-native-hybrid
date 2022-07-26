@@ -8,6 +8,7 @@ export const styless = () => {
 }
 
 export const styles = StyleSheet.create({
+    // Login screen styles
     container:{
         flex:1
     },
@@ -23,17 +24,12 @@ export const styles = StyleSheet.create({
         zIndex: 1,
       },
       image: {
-        // backgroundColor:'red',
         flex: 1,
       },
       form: {
-        // backgroundColor: 'blue',
         flex: 2.5,
-        // borderRadius: 10,
-        // padding: 5,
         justifyContent: 'flex-end',
     
-        // margin:'5px 0'
       },
       input: {
         borderBottomWidth: 1,
@@ -48,7 +44,6 @@ export const styles = StyleSheet.create({
         color: 'black',
       },
       input_wraper: {
-        // marginTop: 50,
       },
       submit: {
         backgroundColor: 'coral',

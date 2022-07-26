@@ -1,25 +1,19 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const loginAction = createAsyncThunk(
-  'login/action',
-  async (data) => {
-    console.log(data, 'datassssss');
-    try {
-       await axios.post(
-        'https://pernstackbackend.herokuapp.com/api/v1/auth/login',
-        data,
-       {
-        headers:{
-            'Content-Type':'application/json'
-        }
-       }
-      ).then(response => response.data)
-    } catch (error) {
-      return thunkApi.rejectWithValue(error.message);
-    }
-  },
-);
+export const loginAction = createAsyncThunk('login/action', async data => {
+  try {
+    const response = await axios
+      .post('https://pernstackbackend.herokuapp.com/api/v1/auth/login', data, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      return response.data
+  } catch (error) {
+    return thunkApi.rejectWithValue(error.message);
+  }
+});
 
 const loginSlice = createSlice({
   name: 'login',
