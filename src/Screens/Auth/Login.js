@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {ActivityIndicator, Alert} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   View,
@@ -11,37 +12,41 @@ import {
 } from 'react-native';
 import {Card} from 'react-native-paper';
 import {loginAction} from '../../../store/slices/signin';
+import {styless, newStyles} from '../../styles/styles';
 
 export const Login = ({navigation}) => {
   const dispatch = useDispatch();
+  const {loading, success} = useSelector(state => state.signin);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const login = () => {
     const data = {email, password};
+    console.log(data, 'date');
     dispatch(loginAction(data));
   };
   return (
-    <View style={styles.container}>
-      <View style={styles.image}>
+    <View style={newStyles.container}>
+      {/* style={styles.container} */}
+      <View style={newStyles.image}>
         <Image
           source={require('../../images/people.png')}
           style={{width: 400, height: 150, position: 'relative', top: 10}}
           resizeMode="center"
         />
       </View>
-      <View style={styles.heading}>
+      <View style={newStyles.heading}>
         <Text style={{fontSize: 30, color: 'black'}}>Welcome Back</Text>
         <Text style={{fontWeight: 'bold', color: 'black'}}>
           Please enter your email and password to login
         </Text>
       </View>
-      <Card style={styles.form}>
+      <Card style={newStyles.form}>
         <View style={{position: 'relative', top: 30}}>
           <TextInput
             placeholder="Email"
             value={email}
             onChangeText={text => setEmail(text)}
-            style={[styles.input, styles.text]}
+            style={[newStyles.input, newStyles.text]}
           />
         </View>
         <View>
@@ -50,11 +55,15 @@ export const Login = ({navigation}) => {
             secureTextEntry={true}
             value={password}
             onChangeText={text => setPassword(text)}
-            style={styles.input}
+            style={newStyles.input}
           />
         </View>
-        <TouchableOpacity style={styles.submit} onPress={login}>
-          <Text style={styles.submit_text}>Submit</Text>
+        <TouchableOpacity style={newStyles.submit} onPress={login}>
+          {loading ? (
+            <ActivityIndicator />
+          ) : (
+            <Text style={newStyles.submit_text}>Login</Text>
+          )}
         </TouchableOpacity>
         <View
           style={{
@@ -78,66 +87,3 @@ export const Login = ({navigation}) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    //padding: 5,
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    //backgroundColor:'green'
-  },
-  text: {
-    color: 'black',
-  },
-  heading: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'relative',
-    top: 70,
-    color: 'black',
-    zIndex: 1,
-  },
-  image: {
-    // backgroundColor:'red',
-    flex: 1,
-  },
-  form: {
-    // backgroundColor: 'blue',
-    flex: 2.5,
-    // borderRadius: 10,
-    // padding: 5,
-    justifyContent: 'flex-end',
-
-    // margin:'5px 0'
-  },
-  input: {
-    borderBottomWidth: 1,
-    borderRightWidth: 1,
-    borderLeftWidth: 1,
-    borderTopWidth: 1,
-    borderRadius: 5,
-    borderColor: '#efefef',
-    marginTop: 60,
-    width: 350,
-    alignSelf: 'center',
-    color: 'black',
-  },
-  input_wraper: {
-    // marginTop: 50,
-  },
-  submit: {
-    backgroundColor: 'coral',
-    borderRadius: 5,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 15,
-    marginTop: 20,
-    width: 350,
-    alignSelf: 'center',
-  },
-  submit_text: {
-    color: 'white',
-    fontSize: 15,
-  },
-});

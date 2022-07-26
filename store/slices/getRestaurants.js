@@ -4,7 +4,7 @@ import axios from 'axios';
 // const get = new Api();
 export const getRestaurants = createAsyncThunk('get', async thunkApi => {
   try {
-    fetch('https://pernstackbackend.herokuapp.com/api/v1/restaurants')
+    axios.get('https://pernstackbackend.herokuapp.com/api/v1/restaurants')
       .then(response => response.json())
       .then(json => {
         setData(json);
