@@ -43,7 +43,10 @@ const App = () => {
           <Stack.Navigator initialRouteName="Login">
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Signup" component={Signup} />
-            <Stack.Screen name="Home" component={Dashboard} />
+            <Stack.Screen name="Home" component={Dashboard} options={{
+              headerBackVisible:false,
+              headerShown:false
+            }} />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>
