@@ -15,8 +15,10 @@ const Item = ({item}) => (
       resizeMode="cover"
     />
 
-    <Title>{item.name}</Title>
-    <Paragraph>{item.location}</Paragraph>
+    <View style={{marginTop: 15}}>
+      <Title>{item.name}</Title>
+      <Paragraph>{item.location}</Paragraph>
+    </View>
   </View>
 );
 const List = ({user}) => {
