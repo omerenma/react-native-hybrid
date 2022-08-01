@@ -21,13 +21,7 @@ export const Login = ({navigation}) => {
   const [password, setPassword] = useState('');
   const login = () => {
     const data = {email, password};
-    dispatch(loginAction(data)).then(res => {
-      if (res.type == 'login/action/fulfilled') {
-        navigation.navigate('Home');
-      }
-
-      navigation.navigate('Login');
-    });
+    dispatch(loginAction(data)).then(() => navigation.navigate('Home'))
   };
   return (
     <View style={styles.container}>

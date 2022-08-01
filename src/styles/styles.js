@@ -10,7 +10,7 @@ export const styless = () => {
 export const styles = StyleSheet.create({
     // Login screen styles
     container:{
-        flex:1
+        flex:1,
     },
     text: {
         color: 'black',

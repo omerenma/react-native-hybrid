@@ -1,22 +1,23 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {View, Text, ActivityIndicator, FlatList} from 'react-native';
+import {View, Text, ActivityIndicator, FlatList, Image} from 'react-native';
 import {Card, Title, Paragraph} from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {getRestaurants} from '../../../store/slices/getRestaurants';
-import axios from 'axios';
+import {style} from '../../styles/card';
 
 const Item = ({item}) => (
-  <Card style={{width: 450, marginTop: 10, padding: 5}}>
-    <Card.Cover
-      source={{
-        uri: item.filepath,
-      }}
+  <View style={style.container}>
+    <Image
+      source={{uri: item.filepath}}
+      style={{width: '100%', height: 150, position: 'relative', top: 10}}
+      resizeMode="cover"
     />
+
     <Title>{item.name}</Title>
     <Paragraph>{item.location}</Paragraph>
-  </Card>
+  </View>
 );
 const List = ({user}) => {
   const dispatch = useDispatch();
@@ -44,8 +45,7 @@ const List = ({user}) => {
 
   const renderItem = ({item}) => <Item item={item} />;
   return (
-    <View style={{flex: 1, padding: 24, alignSelf: 'center'}}>
-      {/* <Text>{user.name}</Text> */}
+    <View style={{flex: 1, backgroundColor: '#ecf0f1', padding: 5}}>
       {isLoading ? (
         <ActivityIndicator
           style={{justifyContent: 'center', alignItems: 'center'}}
@@ -87,7 +87,6 @@ const Tab4 = () => {
 
 const Tab = createBottomTabNavigator();
 function FirstComponent({user}) {
-  console.log(user, 'usereeeee')
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
@@ -116,10 +115,19 @@ function FirstComponent({user}) {
           return <Ionicons name={iconName} size={size} color={color} />;
         },
       })}>
-      <Tab.Screen name="List" component={List} user={user} />
-      <Tab.Screen name="Reviews" component={Reviews} />
-      <Tab.Screen name="Tab3" component={Tab3} />
-      <Tab.Screen name="Tab4" component={Tab4} />
+      <Tab.Screen
+        name="List"
+        component={List}
+        user={user}
+        options={{headerShown: false}}
+      />
+      <Tab.Screen
+        name="Reviews"
+        component={Reviews}
+        options={{headerShown: false}}
+      />
+      <Tab.Screen name="Tab3" component={Tab3} options={{headerShown: false}} />
+      <Tab.Screen name="Tab4" component={Tab4} options={{headerShown: false}} />
     </Tab.Navigator>
   );
 }

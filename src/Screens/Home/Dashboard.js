@@ -14,17 +14,17 @@ export const Dashboard = () => {
   useEffect(() => {
     setData(user);
   }, []);
-  if (!data.token) {
-    return (
-      <View style={{justifyContent: 'center'}}>
-        <Unauthorised />
-      </View>
-    );
-  }
+
   return (
-    <Drawer.Navigator>
-      <Drawer.Screen name="Restaurants" component={Restaurants} user={data} />
-      <Drawer.Screen name="SecondComponent" component={SecondComponent} />
-    </Drawer.Navigator>
-  );
+      <Drawer.Navigator>
+        <Drawer.Screen name="Restaurants" component={Restaurants} user={data} />
+        <Drawer.Screen name="SecondComponent" component={SecondComponent} />
+      </Drawer.Navigator>
+    );
+  
+  // return (
+  //   <View style={{justifyContent: 'center'}}>
+  //     <Unauthorised />
+  //   </View>
+  // );
 };
