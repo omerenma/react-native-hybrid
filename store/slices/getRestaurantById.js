@@ -2,23 +2,28 @@ import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios';
 
 // const get = new Api();
-export const getRestaurants = createAsyncThunk(
-  'get/restaurants',
+export const getRestaurantsById = createAsyncThunk(
+
+  'get',
   async thunkApi => {
     try {
-      const response = await axios.get(
-        'https://pernstackbackend.herokuapp.com/api/v1/restaurants',
-      );
-      console.log(response, 'response data');
-      return response.data;
+      axios
+        .get(`https://pernstackbackend.herokuapp.com/api/v1/restaurants/`)
+        .then(response => response.json())
+        .then(json => {
+          setData(json);
+        })
+        .catch(error => {
+          console.error(error);
+        });
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
   },
 );
 
-const getRestaurantsSlice = createSlice({
-  name: 'restaurants',
+const getRestaurantsSliceById = createSlice({
+  name: 'get restaurants',
   initialState: {
     loading: false,
     success: false,
@@ -28,16 +33,16 @@ const getRestaurantsSlice = createSlice({
   },
   reducers: {},
   extraReducers: {
-    [getRestaurants.pending]: state => {
+    [getRestaurantsById.pending]: state => {
       state.loading = true;
       state.isAuthenticated = false;
     },
-    [getRestaurants.fulfilled]: (state, {payload}) => {
+    [getRestaurantsById.fulfilled]: (state, {payload}) => {
       state.loading = false;
       state.success = true;
       state.data = payload;
     },
-    [getRestaurants.rejected]: (state, {payload}) => {
+    [getRestaurantsById.rejected]: (state, {payload}) => {
       state.loading = false;
       state.success = false;
       state.error = true;
@@ -45,4 +50,4 @@ const getRestaurantsSlice = createSlice({
     },
   },
 });
-export default getRestaurantsSlice.reducer;
+export default getRestaurantsSliceById.reducer;

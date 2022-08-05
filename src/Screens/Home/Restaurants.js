@@ -1,54 +1,54 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {View, Text, ActivityIndicator, FlatList, Image} from 'react-native';
+import {
+  View,
+  Text,
+  ActivityIndicator,
+  FlatList,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import {Card, Title, Paragraph} from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {getRestaurants} from '../../../store/slices/getRestaurants';
+import {getRestaurantsById} from '../../../store/slices/getRestaurantById';
 import {style} from '../../styles/card';
 
-const Item = ({item}) => (
-  <View style={style.container}>
-    <Image
-      source={{uri: item.filepath}}
-      style={{width: '100%', height: 150, position: 'relative', top: 10}}
-      resizeMode="cover"
-    />
+const Item = props => {
+  return (
+    <View style={style.container}>
+      <TouchableOpacity>
+        <Image
+          source={{uri: props.item.filepath}}
+          style={{width: '100%', height: 150, position: 'relative', top: 10}}
+          resizeMode="cover"
+        />
 
-    <View style={{marginTop: 15}}>
-      <Title>{item.name}</Title>
-      <Paragraph>{item.location}</Paragraph>
+        <View style={{marginTop: 15}}>
+          <View style={{flexDirection: 'row'}}>
+            <Title>{props.item.name}</Title>
+            <Title>Total No. of review: 100</Title>
+          </View>
+          <Paragraph>{props.item.location}</Paragraph>
+        </View>
+      </TouchableOpacity>
     </View>
-  </View>
-);
+  );
+};
 const List = ({user}) => {
   const dispatch = useDispatch();
-  // const {data, loading} = useSelector(state => state.getRestaurants.data);
-  const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
-  const [err, setErr] = useState('');
-
-  const getRestaurants = async () => {
-    try {
-      const response = await fetch(
-        'https://pernstackbackend.herokuapp.com/api/v1/restaurants',
-      );
-      const json = await response.json();
-      setData(json);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const {loading, data} = useSelector(state => state.getRestaurants);
   useEffect(() => {
-    getRestaurants();
+   dispatch(getRestaurants());
+
+    // getRestaurants();
   }, []);
 
   const renderItem = ({item}) => <Item item={item} />;
   return (
     <View style={{flex: 1, backgroundColor: '#ecf0f1', padding: 5}}>
-      {isLoading ? (
+      {loading ? (
         <ActivityIndicator
           style={{justifyContent: 'center', alignItems: 'center'}}
         />
