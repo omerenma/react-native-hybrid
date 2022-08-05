@@ -26,9 +26,9 @@ const Item = props => {
         />
 
         <View style={{marginTop: 15}}>
-          <View style={{flexDirection: 'row'}}>
+          <View style={{flexDirection: 'row', justifyContent:'space-between', alignItems:'center'}}>
             <Title>{props.item.name}</Title>
-            <Title>Total No. of review: 100</Title>
+            <Title style={{fontSize:15}}>Total No. of review: 100</Title>
           </View>
           <Paragraph>{props.item.location}</Paragraph>
         </View>

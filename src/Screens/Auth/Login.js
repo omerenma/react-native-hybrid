@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import Storage from 'react-native-storage';
+import AsyncStorage from '@react-native-community/async-storage';
 import {ActivityIndicator, Alert} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {
@@ -14,14 +16,32 @@ import {Card} from 'react-native-paper';
 import {loginAction} from '../../../store/slices/signin';
 import {styless, styles} from '../../styles/styles';
 
+const storage = new Storage({
+  size: 1000,
+  storageBackend: AsyncStorage,
+  defaultExpires: 1000 * 3600 * 24,
+  enableCache: true,
+  sync: {},
+});
+global.storage = storage
 export const Login = ({navigation}) => {
   const dispatch = useDispatch();
-  const {loading, success} = useSelector(state => state.signin);
+  const {loading, success, data} = useSelector(state => state.signin);
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const login = () => {
     const data = {email, password};
-    dispatch(loginAction(data)).then(() => navigation.navigate('Home'))
+    dispatch(loginAction(data))
+   .then(data => {
+      storage.save({
+        key: 'token',
+        data: {
+          token: data['payload']['token'],
+        },
+      });
+      navigation.navigate('Home');
+    });
   };
   return (
     <View style={styles.container}>
